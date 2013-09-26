@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block javascript %}
+  <script src="/static/js/huxleyview.index.js"></script>
+{% endblock %}
+
+{% block content %}
+ <div class="container">
+    <div class="pageheader">
+      <div id="tcase-timeline"></div>
+      <div id="scrolled_date"></div>
+    </div> <!--end for container-->
+
+    <div class="col-md-12 tcases">
+      <div class="runtime">
+        <h4>Test Run Time:</h4>
+        <p></p>
+      </div>
+      <div id="tcase-list">
+        <ul>
+        </ul>
+      </div>
+    </div>
+  </div> <!--end for container-->
+{% endblock %}

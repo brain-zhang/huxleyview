@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load huxley_extras %}
+
+{% block javascript %}
+  <script src="/static/js/jquery.zoom.js"></script>
+  <script type="text/javascript">
+          $(document).ready(function() {
+                  /* simple call */
+                  $('img')
+                    .wrap('<span style="display:inline-block"></span>')
+                    .css('display', 'block')
+                    .parent();
+
+                    if ($ && $.fn.zoom) {
+                      $('img').parent().zoom({ on:'grab' });
+                    }
+          });
+  </script>
+{% endblock %}
+
+{% block content %}
+ <div class="container">
+
+    {% for project in projects %}
+      <div class="project" data-project="{{ project }}">
+
+      {% for step in steps %}
+        <div class="row step" data-step="{{ step }}">
+          {% for stepk, screenshot_list in screenshots.items %}
+            {% if stepk == step %}
+              {% for screenshot in screenshot_list %}
+                <div class="col-md-4" data-seq="prev">
+                  <h4>{{ screenshot.prev.timestamp|ftimestamp }}</h4>
+                  <li>
+                    {% if screenshot.prev.name %}
+                    <img class="screenshot img-thumbnail zoom" src="/site_media/testproject/{{ tcasepath }}/{{ screenshot.prev.timestamp }}/{{ screenshot.prev.name }}" alt="0" />
+                    {% else %}
+                      <img class="screenshot img-thumbnail zoom" src="/static/images/none.png" alt="0" />
+                    {% endif %}
+                  </li>
+                </div>
+
+                <div class="col-md-4" data-seq="curr">
+                  <h4>{{ screenshot.curr.timestamp|ftimestamp }}</h4>
+                  <li>
+                    {% if screenshot.curr.name %}
+                      <img class="screenshot img-thumbnail zoom" src="/site_media/testproject/{{ tcasepath }}/{{ screenshot.curr.timestamp }}/{{ screenshot.curr.name }}" alt="0" />
+                    {% else %}
+                      <img class="screenshot img-thumbnail zoom" src="/static/images/none.png" alt="0" />
+                    {% endif %}
+                  </li>
+                </div>
+
+                <div class="col-md-4" data-seq="diff">
+                  {% if screenshot.diff.name %}
+                    <h4>{{ screenshot.diff.timestamp|ftimestamp }}</h4>
+                  {% else %}
+                    <h4>OK</h4>
+                  {% endif %}
+                  <li>
+                    {% if screenshot.diff.name %}
+                      <img class="screenshot img-thumbnail zoom" src="/site_media/testproject/{{ tcasepath }}/{{ screenshot.diff.timestamp }}/{{ screenshot.diff.name }}" alt="0" />
+                    {% else %}
+                      <img class="screenshot img-thumbnail zoom" src="/static/images/same.png" alt="0" />
+                    {% endif %}
+                  </li>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+      </div>
+    {% endfor %}
+
+  </div> <!--end for container-->
+{% endblock %}
+
+

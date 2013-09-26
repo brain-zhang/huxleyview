@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Huxleyview</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css">
+
+    <!-- own style -->
+    <link rel="stylesheet" href="/static/css/huxleyview.css">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//code.jquery.com/jquery-latest.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <!-- own js-->
+    <script src="/static/js/moment.min.js"></script>
+    <script src="/static/js/d3.v3.min.js"></script>
+    <script src="/static/js/d3-timeline.js"></script>
+    <script src="/static/js/huxleyview.core.js"></script>
+    {% block javascript %}{% endblock %}
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/html5shiv.js"></script>
+    <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div id="header" class="bs-header">
+      <div class="container">
+        <h1><a href="/">Huxleyview</a></h1>
+        <p>Watches you browse, takes screenshots, tells you when they change</p>
+        <div class="carbonad logo">
+        </div>
+      </div>
+    </div>
+    {% block content %}{% endblock %}
+    <div id="footer" class="bs-footer">
+      <div class="container">
+        <h5>one for all,all for one</h5>
+      </div>
+    </div>
+  </body>
+</html>
