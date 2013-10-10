@@ -86,6 +86,7 @@
         .ticks(tickFormat.tickTime, tickFormat.tickNumber)
         .tickSize(tickFormat.tickSize);
 
+      g.attr("transform", "translate(-" + width/2 +",0)")
       g.append("g")
         .attr("class", "axis")
         .attr("transform", "translate(" + 0 +","+(margin.top + (itemHeight + itemMargin) * maxStack)+")")
@@ -157,6 +158,7 @@
       if (width > gParentSize.width) {
         function move() {
           var x = Math.min(0, Math.max(gParentSize.width - width, d3.event.translate[0]));
+          if(x===0){x=-1140;}
           zoom.translate([x, 0]);
           g.attr("transform", "translate(" + x + ",0)");
           scroll(x*scaleFactor, xScale);

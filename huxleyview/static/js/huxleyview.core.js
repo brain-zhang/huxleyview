@@ -54,24 +54,24 @@ Huxleyview.Storage = {
 
   GetTimeScore:function(){
   //return [starting_time, ending_time]
-    var starting_time = 0;
+    var starting_time = 2381251667010;
     var ending_time = 0;
 
-    if(Huxleyview.Utils.IsEmpty(this.timeLineDataList)){
+    if(Huxleyview.Utils.IsEmpty(this.timelineDataList)){
       return [moment().unix()-3600*24, moment().unix()];
     }
-    for(var i=0; i<this.timeLineDataList.length(); i++){
-      for(var j=0; j<this.timeLineDataList[i].times.length; j++){
-        if(this.timeLineDataList[i].times[j]['starting_time'] < begining_time){
-          begining_time = this.timeLineDataList[i].times[j]['starting_time'];
+    for(var i=0; i<this.timelineDataList.length; i++){
+      for(var j=0; j<this.timelineDataList[i].times.length; j++){
+        if(this.timelineDataList[i].times[j]['starting_time'] < starting_time){
+          starting_time = this.timelineDataList[i].times[j]['starting_time'];
         }
-        if(this.timeLineDataList[i].times[j]['endting_time'] > ending_time){
-          ending_time = this.timeLineDataList[i].times[j]['ending_time'];
+        if(this.timelineDataList[i].times[j]['ending_time'] > ending_time){
+          ending_time = this.timelineDataList[i].times[j]['ending_time'];
         }
       }
     }
 
-    return [starting_time, ending_time];
+    return [Math.floor(starting_time/1000), Math.floor(ending_time/1000)];
   },
 };
 
@@ -175,8 +175,8 @@ Huxleyview.UI = {
                       {format: d3.time.format("%Y-%m-%d %H:%M"),
                        tickTime: d3.time.hours,
                        tickNumber: 24,
-                       tickSize: 20})
-                  .margin({left:30, right:30, top:0, bottom:0})
+                       tickSize: 40})
+                  .margin({left:30, right:30, top:10, bottom:20})
                   .hover(function (d, i, datum) {
                   // d is the current rendering object
                   // i is the index during d3 rendering
