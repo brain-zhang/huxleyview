@@ -8,16 +8,14 @@ what's huxleyview?
 
 I externed mode called "history mode":
 
-     add a test mode "history",
-    ---------------------
-    in this mode, huxley will save screenshot to a folder named by current datetime after each test.
-    for exp: this is my 5 tests later
-    ![screenclip](doc/image/03.png)
+in this mode, huxley will save screenshot to a folder named by current datetime after each test.
+for exp: this is my 5 tests later
+![screenclip](doc/image/03.png)
 
-    if you want to use history mode,just record and play in:
-    
-    huxley -r -H
-    huxley -p -H
+if you want to use history mode,just record and play in:
+
+    `huxley -r -H`
+    `huxley -p -H`
 
 
 just download here:
