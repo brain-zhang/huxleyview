@@ -12,7 +12,7 @@ I externed mode called "history mode":
     ---------------------
     in this mode, huxley will save screenshot to a folder named by current datetime after each test.
     for exp: this is my 5 tests later
-    ![screenclip](https://f.cloud.github.com/assets/1989073/1113862/c69bde08-1a08-11e3-87af-ddc3efa9bcb2.png)
+    ![screenclip](doc/image/03.png)
 
     if you want to use history mode,just record and play in:
     
