@@ -7,6 +7,7 @@ import re
 import glob
 import json
 import pprint
+import cPickle as pickle
 
 from django.conf import settings
 from django.shortcuts import render_to_response
@@ -47,6 +48,21 @@ def _render_val(tcase_history):
     pprint.pprint(val)
     return val
 
+def serialize(func):
+    def _deco():
+        serialize_file = 'serialize.pkl'
+        if (not os.path.exists(serialize_file)) or \
+           (os.path.exists(serialize_file) and \
+            os.popen('find %s -newer %s |grep png' % (os.path.join(settings.HUXLEY_TEST_ROOT, ''), serialize_file)).read()<>''):
+            with open(serialize_file, 'wb') as fb:
+                print func()
+                pickle.dump(func(), fb, True)
+
+        with open(serialize_file, 'rb') as fb:
+            return pickle.load(fb)
+    return _deco
+
+@serialize
 def _get_all_testcase_run_times():
     """get all testcase run times
     exp:
