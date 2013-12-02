@@ -107,11 +107,13 @@ def _get_tcase_history(tcasepath='Noname', btime='00000000000000', etime='203000
         'screenshots':
             {'step0':[
                             {
+                                'orgin':{'name':'screenshot0.png',      'timestamp':'20130801000000'},
                                 'prev':{'name':'screenshot0.png',       'timestamp':'20130801000000'},
                                 'curr':{'name':'screenshot0.png',       'timestamp':'20130802000000'},
                                 'diff':{'name':'screenshot0_diff.png',  'timestamp':'20130802000000'},
                             },
                             {
+                                'orgin':{'name':'screenshot0.png',      'timestamp':'20130801000000'},
                                 'prev':{'name':'screenshot0.png',       'timestamp':'20130801000000'},
                                 'curr':{'name':'screenshot0.png',       'timestamp':'20130802000000'},
                                 'diff':{'name':'screenshot0_diff.png',  'timestamp':'20130802000000'},
@@ -168,6 +170,7 @@ def gen_steps_history_item(tcase_image_path, curr):
                     {'step':0
                      'history':
                                 {
+                                    'orgin':{'name':'screenshot0.png',       'timestamp':'20130830152009'},
                                     'prev':{'name':'screenshot0.png',       'timestamp':'20130830152009'},
                                     'curr':{'name':'screenshot0.png',       'timestamp':'20130830152414'},
                                     'diff':{'name':None,                    'timestamp':None},
@@ -179,6 +182,7 @@ def gen_steps_history_item(tcase_image_path, curr):
                     {'step':0
                      'history':
                                 {
+                                    'orgin':{'name':'screenshot0.png',       'timestamp':'20130830152414'},
                                     'prev':{'name':'screenshot0.png',       'timestamp':'20130830152414'},
                                     'curr':{'name':'screenshot0.png',       'timestamp':'20130830152743'},
                                     'diff':{'name':'screenshot0_diff.png',  'timestamp':'20130830152414'},
@@ -195,6 +199,7 @@ def gen_steps_history_item(tcase_image_path, curr):
             his_iter_case['step'] = re_image_name.groups()[1]
             his_iter_case['history'] = {}
 
+            his_orgin_name = "%s%s.png" % (settings.HUXLEY_IMAGE_PREFIX, his_iter_case['step'])
             his_curr_name = "%s%s.png" % (settings.HUXLEY_IMAGE_PREFIX, his_iter_case['step'])
             his_prev_name = "%s%s.png" % (settings.HUXLEY_IMAGE_PREFIX, his_iter_case['step'])
             his_diff_name = "%s%s_diff.png" % (settings.HUXLEY_IMAGE_PREFIX, his_iter_case['step'])
@@ -202,6 +207,11 @@ def gen_steps_history_item(tcase_image_path, curr):
             item_index = all_history_time.index(curr)
             his_iter_case['history']['curr'] = \
                     {'name': his_curr_name, 'timestamp':curr}
+            if len(all_history_time):
+                his_iter_case['history']['orgin'] = \
+                        {'name':his_orgin_name, 'timestamp':all_history_time[0]}
+            else:
+                his_iter_case['history']['orgin'] = {'name':None, 'timestamp':None}
 
             if item_index > 0 and \
                     os.path.exists(os.path.join(tcase_image_path, all_history_time[item_index-1], his_prev_name)):

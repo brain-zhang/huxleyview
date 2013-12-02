@@ -29,11 +29,11 @@
           {% for stepk, screenshot_list in screenshots.items %}
             {% if stepk == step %}
               {% for screenshot in screenshot_list %}
-                <div class="col-md-4" data-seq="prev">
-                  <h4>{{ screenshot.prev.timestamp|ftimestamp }}</h4>
+                <div class="col-md-4" data-seq="orgin">
+                  <h4>{{ screenshot.orgin.timestamp|ftimestamp }}</h4>
                   <li>
-                    {% if screenshot.prev.name %}
-                    <img class="screenshot img-thumbnail zoom" src="/site_media/testproject/{{ tcasepath }}/{{ screenshot.prev.timestamp }}/{{ screenshot.prev.name }}" alt="0" />
+                    {% if screenshot.orgin.name %}
+                    <img class="screenshot img-thumbnail zoom" src="/site_media/testproject/{{ tcasepath }}/{{ screenshot.orgin.timestamp }}/{{ screenshot.orgin.name }}" alt="0" />
                     {% else %}
                       <img class="screenshot img-thumbnail zoom" src="/static/images/none.png" alt="0" />
                     {% endif %}
